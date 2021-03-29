@@ -15,6 +15,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void update_speed_label(int speed);
+
+private slots:
+    void on_step_button_clicked();
+
+    void on_speed_slider_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
 };
