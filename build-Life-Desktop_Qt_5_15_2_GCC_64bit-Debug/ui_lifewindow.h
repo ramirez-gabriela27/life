@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -31,15 +32,21 @@ public:
     QWidget *centralwidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
-    QPushButton *Step;
-    QPushButton *Play;
-    QPushButton *Pause;
+    QPushButton *step_button;
+    QPushButton *play_button;
+    QPushButton *pause_button;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
-    QLabel *Faster;
-    QSlider *SpeedSlider;
-    QLabel *Slower;
-    QLabel *speedLabel;
+    QLabel *faster_label;
+    QSlider *speed_slider;
+    QLabel *slower_label;
+    QLabel *speed_label;
+    QGraphicsView *graph_view;
+    QGraphicsView *grid_view;
+    QWidget *verticalLayoutWidget_2;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *turn_label;
+    QLabel *population_label;
     QMenuBar *menubar;
     QMenu *menuLife;
     QStatusBar *statusbar;
@@ -53,55 +60,77 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayoutWidget = new QWidget(centralwidget);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(0, 420, 791, 131));
+        horizontalLayoutWidget->setGeometry(QRect(0, 450, 791, 101));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        Step = new QPushButton(horizontalLayoutWidget);
-        Step->setObjectName(QString::fromUtf8("Step"));
+        step_button = new QPushButton(horizontalLayoutWidget);
+        step_button->setObjectName(QString::fromUtf8("step_button"));
 
-        horizontalLayout->addWidget(Step);
+        horizontalLayout->addWidget(step_button);
 
-        Play = new QPushButton(horizontalLayoutWidget);
-        Play->setObjectName(QString::fromUtf8("Play"));
+        play_button = new QPushButton(horizontalLayoutWidget);
+        play_button->setObjectName(QString::fromUtf8("play_button"));
 
-        horizontalLayout->addWidget(Play);
+        horizontalLayout->addWidget(play_button);
 
-        Pause = new QPushButton(horizontalLayoutWidget);
-        Pause->setObjectName(QString::fromUtf8("Pause"));
+        pause_button = new QPushButton(horizontalLayoutWidget);
+        pause_button->setObjectName(QString::fromUtf8("pause_button"));
 
-        horizontalLayout->addWidget(Pause);
+        horizontalLayout->addWidget(pause_button);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        Faster = new QLabel(horizontalLayoutWidget);
-        Faster->setObjectName(QString::fromUtf8("Faster"));
+        faster_label = new QLabel(horizontalLayoutWidget);
+        faster_label->setObjectName(QString::fromUtf8("faster_label"));
 
-        horizontalLayout_2->addWidget(Faster);
+        horizontalLayout_2->addWidget(faster_label);
 
-        SpeedSlider = new QSlider(horizontalLayoutWidget);
-        SpeedSlider->setObjectName(QString::fromUtf8("SpeedSlider"));
-        SpeedSlider->setOrientation(Qt::Horizontal);
+        speed_slider = new QSlider(horizontalLayoutWidget);
+        speed_slider->setObjectName(QString::fromUtf8("speed_slider"));
+        speed_slider->setOrientation(Qt::Horizontal);
 
-        horizontalLayout_2->addWidget(SpeedSlider);
+        horizontalLayout_2->addWidget(speed_slider);
 
-        Slower = new QLabel(horizontalLayoutWidget);
-        Slower->setObjectName(QString::fromUtf8("Slower"));
+        slower_label = new QLabel(horizontalLayoutWidget);
+        slower_label->setObjectName(QString::fromUtf8("slower_label"));
 
-        horizontalLayout_2->addWidget(Slower);
+        horizontalLayout_2->addWidget(slower_label);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
 
-        speedLabel = new QLabel(horizontalLayoutWidget);
-        speedLabel->setObjectName(QString::fromUtf8("speedLabel"));
+        speed_label = new QLabel(horizontalLayoutWidget);
+        speed_label->setObjectName(QString::fromUtf8("speed_label"));
 
-        verticalLayout->addWidget(speedLabel);
+        verticalLayout->addWidget(speed_label);
 
 
         horizontalLayout->addLayout(verticalLayout);
+
+        graph_view = new QGraphicsView(centralwidget);
+        graph_view->setObjectName(QString::fromUtf8("graph_view"));
+        graph_view->setGeometry(QRect(0, 350, 791, 101));
+        grid_view = new QGraphicsView(centralwidget);
+        grid_view->setObjectName(QString::fromUtf8("grid_view"));
+        grid_view->setGeometry(QRect(0, 80, 791, 271));
+        verticalLayoutWidget_2 = new QWidget(centralwidget);
+        verticalLayoutWidget_2->setObjectName(QString::fromUtf8("verticalLayoutWidget_2"));
+        verticalLayoutWidget_2->setGeometry(QRect(0, 10, 791, 61));
+        verticalLayout_3 = new QVBoxLayout(verticalLayoutWidget_2);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        turn_label = new QLabel(verticalLayoutWidget_2);
+        turn_label->setObjectName(QString::fromUtf8("turn_label"));
+
+        verticalLayout_3->addWidget(turn_label);
+
+        population_label = new QLabel(verticalLayoutWidget_2);
+        population_label->setObjectName(QString::fromUtf8("population_label"));
+
+        verticalLayout_3->addWidget(population_label);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -124,12 +153,14 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        Step->setText(QCoreApplication::translate("MainWindow", "Step", nullptr));
-        Play->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
-        Pause->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
-        Faster->setText(QCoreApplication::translate("MainWindow", "Slower", nullptr));
-        Slower->setText(QCoreApplication::translate("MainWindow", "Faster", nullptr));
-        speedLabel->setText(QCoreApplication::translate("MainWindow", "Speed: 0.000", nullptr));
+        step_button->setText(QCoreApplication::translate("MainWindow", "Step", nullptr));
+        play_button->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
+        pause_button->setText(QCoreApplication::translate("MainWindow", "Pause", nullptr));
+        faster_label->setText(QCoreApplication::translate("MainWindow", "Slower", nullptr));
+        slower_label->setText(QCoreApplication::translate("MainWindow", "Faster", nullptr));
+        speed_label->setText(QCoreApplication::translate("MainWindow", "Speed: 0.000", nullptr));
+        turn_label->setText(QCoreApplication::translate("MainWindow", "Turn: 0", nullptr));
+        population_label->setText(QCoreApplication::translate("MainWindow", "Population: 0 (0%)", nullptr));
         menuLife->setTitle(QCoreApplication::translate("MainWindow", "Life", nullptr));
     } // retranslateUi
 
