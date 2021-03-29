@@ -895,8 +895,11 @@ lifewindow.o: ../Life/lifewindow.cpp ../Life/lifewindow.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qtabwidget.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h \
+		ui_lifewindow.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/QVariant \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QAction \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qaction.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qactiongroup.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
@@ -904,13 +907,35 @@ lifewindow.o: ../Life/lifewindow.cpp ../Life/lifewindow.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QGraphicsView \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qgraphicsview.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpainter.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpen.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qscrollarea.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qframe.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QHBoxLayout \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qboxlayout.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qlayout.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qlayoutitem.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qgridlayout.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QLabel \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qlabel.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QMenu \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qmenu.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QMenuBar \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qmenubar.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qmenu.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qaction.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QPushButton \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qpushbutton.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QSlider \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qslider.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qabstractslider.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QStatusBar \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QVBoxLayout \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lifewindow.o ../Life/lifewindow.cpp
 

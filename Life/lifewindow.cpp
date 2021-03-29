@@ -2,6 +2,7 @@
 #include "ui_lifewindow.h"
 #include <QDebug>
 #include <iostream>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
