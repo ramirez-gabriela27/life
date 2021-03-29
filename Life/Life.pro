@@ -13,7 +13,8 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
-    lifewindow.h
+    lifewindow.h \
+    ui_mainwindow.h
 
 FORMS += \
     lifewindow.ui
