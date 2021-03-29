@@ -14,7 +14,6 @@ SOURCES += \
 
 HEADERS += \
     lifewindow.h \
-    ui_mainwindow.h
 
 FORMS += \
     lifewindow.ui

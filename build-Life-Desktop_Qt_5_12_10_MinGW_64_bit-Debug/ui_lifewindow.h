@@ -135,7 +135,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 22));
+        menubar->setGeometry(QRect(0, 0, 800, 26));
         menuLife = new QMenu(menubar);
         menuLife->setObjectName(QString::fromUtf8("menuLife"));
         MainWindow->setMenuBar(menubar);
@@ -158,7 +158,7 @@ public:
         pause_button->setText(QApplication::translate("MainWindow", "Pause", nullptr));
         faster_label->setText(QApplication::translate("MainWindow", "Slower", nullptr));
         slower_label->setText(QApplication::translate("MainWindow", "Faster", nullptr));
-        speed_label->setText(QApplication::translate("MainWindow", "Speed: 0.000", nullptr));
+        speed_label->setText(QApplication::translate("MainWindow", "Speed: 0", nullptr));
         turn_label->setText(QApplication::translate("MainWindow", "Turn: 0", nullptr));
         population_label->setText(QApplication::translate("MainWindow", "Population: 0 (0%)", nullptr));
         menuLife->setTitle(QApplication::translate("MainWindow", "Life", nullptr));
