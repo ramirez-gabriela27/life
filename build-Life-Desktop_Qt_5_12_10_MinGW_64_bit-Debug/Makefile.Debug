@@ -19,13 +19,13 @@ CXXFLAGS      = -fno-keep-inline-dllexport -g -std=gnu++11 -Wall -W -Wextra -fex
 INCPATH       = -I../Life -I. -IC:/Qt/Qt5.12.10/5.12.10/mingw73_64/include -IC:/Qt/Qt5.12.10/5.12.10/mingw73_64/include/QtWidgets -IC:/Qt/Qt5.12.10/5.12.10/mingw73_64/include/QtGui -IC:/Qt/Qt5.12.10/5.12.10/mingw73_64/include/QtANGLE -IC:/Qt/Qt5.12.10/5.12.10/mingw73_64/include/QtCore -Idebug -I. -I/include -IC:/Qt/Qt5.12.10/5.12.10/mingw73_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,windows -mthreads
-LIBS        =        C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Widgetsd.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Guid.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Cored.a  -lmingw32 C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libqtmaind.a -LC:/openssl/lib -LC:/Utils/my_sql/mysql-5.6.11-winx64/lib -LC:/Utils/postgresql/pgsql/lib -lshell32 
+LIBS        =        C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Widgetsd.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Guid.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Cored.a debug/Life_resource_res.o  -lmingw32 C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libqtmaind.a -LC:/openssl/lib -LC:/Utils/my_sql/mysql-5.6.11-winx64/lib -LC:/Utils/postgresql/pgsql/lib -lshell32 
 QMAKE         = C:/Qt/Qt5.12.10/5.12.10/mingw73_64/bin/qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = 
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = debug/Life_resource_res.o
 COPY          = cp -f
 SED           = sed
 COPY_FILE     = cp -f
@@ -65,8 +65,11 @@ DESTDIR_TARGET = debug/Life.exe
 first: all
 all: Makefile.Debug  debug/Life.exe
 
-debug/Life.exe: C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Widgetsd.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Guid.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Cored.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libqtmaind.a ui_lifewindow.h $(OBJECTS) 
+debug/Life.exe: C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Widgetsd.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Guid.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libQt5Cored.a C:/Qt/Qt5.12.10/5.12.10/mingw73_64/lib/libqtmaind.a ui_lifewindow.h $(OBJECTS) debug/Life_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
+
+debug/Life_resource_res.o: Life_resource.rc
+	windres -i Life_resource.rc -o debug/Life_resource_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Debug ../Life/Life.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug
@@ -78,6 +81,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) debug/lifewindow.o debug/main.o debug/moc_lifewindow.o
+	-$(DEL_FILE) debug/Life_resource_res.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
