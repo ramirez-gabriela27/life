@@ -75,7 +75,7 @@
        <item>
         <widget class="QLabel" name="speed_label">
          <property name="text">
-          <string>Speed: 0.000</string>
+          <string>Speed: 0</string>
          </property>
         </widget>
        </item>
@@ -136,7 +136,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLife">
