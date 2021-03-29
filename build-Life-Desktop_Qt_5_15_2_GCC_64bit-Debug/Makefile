@@ -52,11 +52,11 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../Life/main.cpp \
-		../Life/mainwindow.cpp moc_mainwindow.cpp
-OBJECTS       = main.o \
-		mainwindow.o \
-		moc_mainwindow.o
+SOURCES       = ../Life/lifewindow.cpp \
+		../Life/main.cpp moc_lifewindow.cpp
+OBJECTS       = lifewindow.o \
+		main.o \
+		moc_lifewindow.o
 DIST          = /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/common/unix.conf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/common/linux.conf \
@@ -213,6 +213,7 @@ DIST          = /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
+		../Life/.qmake.stash \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -233,8 +234,8 @@ DIST          = /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/exceptions.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/yacc.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/lex.prf \
-		../Life/Life.pro ../Life/mainwindow.h ../Life/main.cpp \
-		../Life/mainwindow.cpp
+		../Life/Life.pro ../Life/lifewindow.h ../Life/lifewindow.cpp \
+		../Life/main.cpp
 QMAKE_TARGET  = Life
 DESTDIR       = 
 TARGET        = Life
@@ -243,7 +244,7 @@ TARGET        = Life
 first: all
 ####### Build rules
 
-Life: ui_mainwindow.h $(OBJECTS)  
+Life: ui_lifewindow.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../Life/Life.pro /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
@@ -402,6 +403,7 @@ Makefile: ../Life/Life.pro /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qma
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -580,6 +582,7 @@ Makefile: ../Life/Life.pro /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qma
 /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf:
 /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf:
 /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -616,9 +619,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Life/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Life/main.cpp ../Life/mainwindow.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Life/mainwindow.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Life/lifewindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Life/lifewindow.cpp ../Life/main.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Life/lifewindow.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -650,10 +653,10 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -Wextra -dM -E -o moc_predefs.h /home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_lifewindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
-moc_mainwindow.cpp: ../Life/mainwindow.h \
+	-$(DEL_FILE) moc_lifewindow.cpp
+moc_lifewindow.cpp: ../Life/lifewindow.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QMainWindow \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -762,18 +765,18 @@ moc_mainwindow.cpp: ../Life/mainwindow.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
 		moc_predefs.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/bin/moc
-	/home/gubgub27/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include '/home/gubgub27/Desktop/CSCI 3010/Homework/HW4/life/build-Life-Desktop_Qt_5_15_2_GCC_64bit-Debug/moc_predefs.h' -I/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I'/home/gubgub27/Desktop/CSCI 3010/Homework/HW4/life/Life' -I/home/gubgub27/Qt/5.15.2/gcc_64/include -I/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui -I/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Life/mainwindow.h -o moc_mainwindow.cpp
+	/home/gubgub27/Qt/5.15.2/gcc_64/bin/moc $(DEFINES) --include '/home/gubgub27/Desktop/CSCI 3010/Homework/HW4/life/build-Life-Desktop_Qt_5_15_2_GCC_64bit-Debug/moc_predefs.h' -I/home/gubgub27/Qt/5.15.2/gcc_64/mkspecs/linux-g++ -I'/home/gubgub27/Desktop/CSCI 3010/Homework/HW4/life/Life' -I/home/gubgub27/Qt/5.15.2/gcc_64/include -I/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets -I/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui -I/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../Life/lifewindow.h -o moc_lifewindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_lifewindow.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
-ui_mainwindow.h: ../Life/mainwindow.ui \
+	-$(DEL_FILE) ui_lifewindow.h
+ui_lifewindow.h: ../Life/lifewindow.ui \
 		/home/gubgub27/Qt/5.15.2/gcc_64/bin/uic
-	/home/gubgub27/Qt/5.15.2/gcc_64/bin/uic ../Life/mainwindow.ui -o ui_mainwindow.h
+	/home/gubgub27/Qt/5.15.2/gcc_64/bin/uic ../Life/lifewindow.ui -o ui_lifewindow.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -785,7 +788,133 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-main.o: ../Life/main.cpp ../Life/mainwindow.h \
+lifewindow.o: ../Life/lifewindow.cpp ../Life/lifewindow.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QMainWindow \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qmainwindow.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qobject.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qlist.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qiterator.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qhashfunctions.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qpair.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qvector.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcontainertools_impl.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qpoint.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qbytearraylist.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringlist.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qregexp.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringmatcher.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcoreevent.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qscopedpointer.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qmetatype.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qvarlengtharray.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcontainerfwd.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qobject_impl.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qmargins.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpaintdevice.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qrect.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsize.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpalette.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qcolor.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qrgb.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qbrush.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qmatrix.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpolygon.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qregion.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qdatastream.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qiodevice.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qline.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtransform.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qimage.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpixelformat.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpixmap.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qshareddata.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qhash.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qfont.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qfontmetrics.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qfontinfo.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qcursor.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qkeysequence.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qevent.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qvariant.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qmap.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qdebug.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qtextstream.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qlocale.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qset.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcontiguouscache.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qurl.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qurlquery.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qfile.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qfiledevice.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qvector2d.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qtabwidget.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
+		ui_mainwindow.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/QVariant \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QMenuBar \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qmenubar.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qmenu.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qaction.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qactiongroup.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QStatusBar \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qstatusbar.h \
+		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lifewindow.o ../Life/lifewindow.cpp
+
+main.o: ../Life/main.cpp ../Life/lifewindow.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QMainWindow \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qmainwindow.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -901,118 +1030,8 @@ main.o: ../Life/main.cpp ../Life/mainwindow.h \
 		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Life/main.cpp
 
-mainwindow.o: ../Life/mainwindow.cpp ../Life/mainwindow.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/QMainWindow \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qmainwindow.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs_win.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qobject.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qlist.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qiterator.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qhashfunctions.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qpair.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qvector.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcontainertools_impl.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qpoint.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qbytearraylist.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringlist.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qregexp.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qstringmatcher.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcoreevent.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qscopedpointer.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qmetatype.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qvarlengtharray.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcontainerfwd.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qobject_impl.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qmargins.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpaintdevice.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qrect.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsize.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpalette.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qcolor.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qrgb.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qbrush.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qmatrix.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpolygon.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qregion.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qdatastream.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qiodevice.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qline.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtransform.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qimage.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpixelformat.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qpixmap.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qshareddata.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qhash.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qfont.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qfontmetrics.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qfontinfo.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qcursor.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qkeysequence.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qevent.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qvariant.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qmap.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qdebug.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qtextstream.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qlocale.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qset.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qcontiguouscache.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qurl.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qurlquery.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qfile.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtCore/qfiledevice.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qvector2d.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtWidgets/qtabwidget.h \
-		/home/gubgub27/Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Life/mainwindow.cpp
-
-moc_mainwindow.o: moc_mainwindow.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+moc_lifewindow.o: moc_lifewindow.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_lifewindow.o moc_lifewindow.cpp
 
 ####### Install
 
