@@ -1,4 +1,5 @@
 #include "lifewindow.h"
+#include "lifegame.h"
 #include "ui_lifewindow.h"
 #include <QDebug>
 #include <iostream>
