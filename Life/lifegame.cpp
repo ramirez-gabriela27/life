@@ -13,9 +13,9 @@ void Game::start_game(){
     return;
 }
 
-void Game::create_grid(){
-    return;
-}
+//void Game::create_grid(){
+//    return;
+//}
 
 void Game::create_graph(){
     return;

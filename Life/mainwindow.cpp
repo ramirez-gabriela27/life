@@ -45,12 +45,9 @@ void MainWindow::on_actionNew_Game_triggered()
 {
     Dialog *dialog = new Dialog(this);
     dialog->open();
-//    dialog->exec();
-//    if (lol == QDialog::Rejected) {
-//        emit this->on_actionNew_Game_triggered();
-//    }
-    // if (widget info is valid)
-    //    Game* game = new Game();
+    // if game exists, clear screen
+
+
     qDebug() << "New game created!";
     // create dialogue window
 }

@@ -39,8 +39,7 @@ void Dialog::on_buttonBox_accepted()
         qDebug() << "Reject";
         QMessageBox msgBox;
         msgBox.setText("You must fill both fields!");
-        msgBox.open();
-
+        msgBox.exec();
     }
     else
         accept();
