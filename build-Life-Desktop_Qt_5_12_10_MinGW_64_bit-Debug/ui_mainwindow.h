@@ -29,6 +29,7 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionNew_Game;
     QWidget *centralwidget;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
@@ -48,7 +49,7 @@ public:
     QLabel *turn_label;
     QLabel *population_label;
     QMenuBar *menubar;
-    QMenu *menuLife;
+    QMenu *File_button;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -56,6 +57,8 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(800, 600);
+        actionNew_Game = new QAction(MainWindow);
+        actionNew_Game->setObjectName(QString::fromUtf8("actionNew_Game"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayoutWidget = new QWidget(centralwidget);
@@ -136,14 +139,15 @@ public:
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 800, 26));
-        menuLife = new QMenu(menubar);
-        menuLife->setObjectName(QString::fromUtf8("menuLife"));
+        File_button = new QMenu(menubar);
+        File_button->setObjectName(QString::fromUtf8("File_button"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
-        menubar->addAction(menuLife->menuAction());
+        menubar->addAction(File_button->menuAction());
+        File_button->addAction(actionNew_Game);
 
         retranslateUi(MainWindow);
 
@@ -153,6 +157,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+        actionNew_Game->setText(QApplication::translate("MainWindow", "New Game", nullptr));
         step_button->setText(QApplication::translate("MainWindow", "Step", nullptr));
         play_button->setText(QApplication::translate("MainWindow", "Play", nullptr));
         pause_button->setText(QApplication::translate("MainWindow", "Pause", nullptr));
@@ -161,7 +166,7 @@ public:
         speed_label->setText(QApplication::translate("MainWindow", "Speed: 0", nullptr));
         turn_label->setText(QApplication::translate("MainWindow", "Turn: 0", nullptr));
         population_label->setText(QApplication::translate("MainWindow", "Population: 0 (0%)", nullptr));
-        menuLife->setTitle(QApplication::translate("MainWindow", "Life", nullptr));
+        File_button->setTitle(QApplication::translate("MainWindow", "File", nullptr));
     } // retranslateUi
 
 };

@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "lifegame.h"
-#include "ui_lifewindow.h"
+#include "ui_mainwindow.h"
 #include <QDebug>
 #include <iostream>
 

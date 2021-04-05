@@ -139,14 +139,20 @@
      <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuLife">
+   <widget class="QMenu" name="File_button">
     <property name="title">
-     <string>Life</string>
+     <string>File</string>
     </property>
+    <addaction name="actionNew_Game"/>
    </widget>
-   <addaction name="menuLife"/>
+   <addaction name="File_button"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew_Game">
+   <property name="text">
+    <string>New Game</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
