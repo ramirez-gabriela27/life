@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "lifegame.h"
+#include "dialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

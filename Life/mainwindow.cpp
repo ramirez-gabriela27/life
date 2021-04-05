@@ -43,7 +43,10 @@ void MainWindow::on_speed_slider_valueChanged(int value)
 
 void MainWindow::on_actionNew_Game_triggered()
 {
-    Game* game = new Game();
+    Dialog *dialog = new Dialog(this);
+    dialog->show();
+    // if (widget info is valid)
+    //    Game* game = new Game();
     qDebug() << "New game created!";
     // create dialogue window
 }
