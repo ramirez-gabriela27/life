@@ -2,7 +2,6 @@
 #define DIALOG_H
 
 #include <QDialog>
-
 namespace Ui {
 class Dialog;
 }
@@ -15,8 +14,22 @@ public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
 
+    void set_height(int height) {height_input = height;};
+    void set_width(int width) {width_input = width;};
+
+    int get_height(){return height_input;};
+    int get_width() {return width_input;};
+
+
+private slots:
+    // When user is done filling out text box
+    void on_buttonBox_accepted();
+
 private:
     Ui::Dialog *ui;
+    int height_input;
+    int width_input;
+
 };
 
 #endif // DIALOG_H

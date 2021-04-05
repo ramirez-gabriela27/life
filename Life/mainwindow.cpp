@@ -44,7 +44,11 @@ void MainWindow::on_speed_slider_valueChanged(int value)
 void MainWindow::on_actionNew_Game_triggered()
 {
     Dialog *dialog = new Dialog(this);
-    dialog->show();
+    dialog->open();
+//    dialog->exec();
+//    if (lol == QDialog::Rejected) {
+//        emit this->on_actionNew_Game_triggered();
+//    }
     // if (widget info is valid)
     //    Game* game = new Game();
     qDebug() << "New game created!";
