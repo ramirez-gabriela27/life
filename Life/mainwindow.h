@@ -2,6 +2,8 @@
 #define LIFEWINDOW_H
 
 #include <QMainWindow>
+#include "lifegame.h"
+#include "dialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,10 +21,12 @@ public:
 
 private slots:
     void on_step_button_clicked();
-
     void on_speed_slider_valueChanged(int value);
+
+    void on_actionNew_Game_triggered();
 
 private:
     Ui::MainWindow *ui;
+
 };
 #endif // LIFEWINDOW_H

@@ -2,13 +2,18 @@
 #define LIFEGAME_H
 
 #include <QColor>
+#include <QGraphicsItem>
 
 struct Location{
     int x_;
     int y_;
 };
 
-class Cell{
+class Cell : public QObject, public QGraphicsItem {
+
+    // this makes it so that we can emit signals
+    Q_OBJECT
+
 public:
     //getters
     Location get_location(){ return location_; };
@@ -27,8 +32,18 @@ private:
     bool next_state_; //^^
 };
 
-class Game{
+class Game : public QObject{
+
+    // this makes it so that we can emit signals
+    Q_OBJECT
+
+
 public:
+
+    // make this singleton
+    // creates 2D vector of Cell objects. Has them displayed on mainwindow
+    Game(int height, int width);
+
     //getters
     int get_turns(){ return turn_count_; };
     //setters
@@ -38,7 +53,7 @@ public:
     void take_turn();
     void start_game();
         //will call on these
-        void create_grid();
+//        void create_grid();
         void create_graph();
         void start_simulation();
     void update_grid();
@@ -48,6 +63,7 @@ private:
     int turn_count_;
     int speed_;
     bool is_paused_;
+
 };
 
 #endif // LIFEGAME_H
