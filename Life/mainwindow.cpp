@@ -1,4 +1,4 @@
-#include "lifewindow.h"
+#include "mainwindow.h"
 #include "lifegame.h"
 #include "ui_lifewindow.h"
 #include <QDebug>

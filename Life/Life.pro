@@ -9,15 +9,15 @@ CONFIG += c++11
 
 SOURCES += \
     lifegame.cpp \
-    lifewindow.cpp \
-    main.cpp
+    main.cpp \
+    mainwindow.cpp
 
 HEADERS += \
     lifegame.h \
-    lifewindow.h \
+    mainwindow.h
 
 FORMS += \
-    lifewindow.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
