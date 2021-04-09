@@ -10,7 +10,7 @@ struct Location{
     int y_;
 };
 
-class Cell{
+class Cell : public QObject, public QGraphicsItem{
 
     // this makes it so that we can emit signals
     Q_OBJECT
@@ -46,7 +46,7 @@ public:
     // creates 2D vector of Cell objects. Has them displayed on mainwindow
     Game(int height, int width);
 
-    ~Game();
+    //~Game();
 
     //getters
     int get_turns(){ return turn_count_; };
