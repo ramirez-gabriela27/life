@@ -44,9 +44,12 @@ public:
     // creates 2D vector of Cell objects. Has them displayed on mainwindow
     Game(int height, int width);
 
+    ~Game();
+
     //getters
     int get_turns(){ return turn_count_; };
     //setters
+    void set_color(QColor c);
     void set_speed(int s){ speed_ = s; };
     void pause_simulation(bool p){ is_paused_ = p; };
     //member functions
