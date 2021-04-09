@@ -2,6 +2,7 @@
 #include <stdlib.h> // srand
 #include <time.h>
 #include <QDebug>
+#include <QWidget>
 //location struct
 //cell class finished in header
 //game class needs completion
@@ -19,24 +20,29 @@ Cell::Cell(){
 Game::Game(int h, int w){
     height_ = h;
     widtht_ = w;
+    srand (time(NULL));
 
     //create and populate vector of cells
     for (int i = 0; i < w; i++){
+        std::vector<Cell*> rows_;
         for (int j = 0; j < h; j++){
             //create location
             Location l;
             l.x_ = i;
             l.y_ = j;
-            srand (time(NULL));
-            int temp = rand()%2+1;
+            int temp = rand()%2;
             qDebug() << temp;
             bool state = bool(temp);
             Cell *c = new Cell();
             c->set_curr_state(state);
+            // set dead cells to white
+            if (!state)
+                c->set_color(Qt::white);
+            rows_.push_back(c);
+            // display cell object on UI
 
-//            Cell *c = new Cell();
-//            cells_[i][j] = c;
         }
+        cells_.push_back(rows_);
     }
 
     create_grid();
@@ -63,6 +69,8 @@ void Game::start_game(){
 }
 
 void Game::create_grid(){
+
+
     return;
 }
 
@@ -85,3 +93,20 @@ void Game::update_graph(){
 void Game::pause_simulation(){
     return;
 }
+QRectF Cell::boundingRect()
+{
+    return QRectF(location_.x_, location_.y_, 20, 20);
+}
+
+//void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget)
+//{
+//    Q_UNUSED(widget);
+
+
+//    QBrush b = painter->brush();
+//    // update the line for setBrush to be this
+//    painter->setBrush(QBrush(color_));
+
+//    painter->drawEllipse(QRect(this->x_, this->y_, this->width_, this->width_));
+//    painter->setBrush(b);
+//}
