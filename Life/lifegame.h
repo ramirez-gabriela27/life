@@ -53,6 +53,7 @@ public:
     //getters
     int get_turns(){ return turn_count_; };
     bool get_status(){ return is_paused_; };
+    std::vector<std::vector<Cell*>> get_game_vec() { return cells_;};
     //setters
     void set_color(QColor c);
     void set_speed(int s){ speed_ = s; };
@@ -61,8 +62,8 @@ public:
     void take_turn();
     void start_game();
         //will call on these
-        void create_grid();
-        void create_graph();
+//        void create_grid();
+//        void create_graph();
         void start_simulation();
     void update_grid();
     void update_graph();
