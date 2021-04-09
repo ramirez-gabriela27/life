@@ -19,6 +19,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void start_game(){
+    //new Game;
+}
+
 // Updates label text on UI
 void MainWindow::update_speed_label(int speed)
 {
