@@ -19,8 +19,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void start_game(){
-    //new Game;
+void MainWindow::get_game_coordinates(int height, int width) {
+    qDebug() << "Creating game instance! " << height<< ", " << width;
+    Game *g = new Game(height, width);
+    this->set_game(g);
+
 }
 
 // Updates label text on UI
@@ -52,6 +55,7 @@ void MainWindow::on_actionNew_Game_triggered()
 {
     Dialog *dialog = new Dialog(this);
     dialog->open();
+    connect(dialog, &Dialog::send_coordinates, this , &MainWindow::get_game_coordinates);
     // if game exists, clear screen
 
 
