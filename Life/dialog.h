@@ -1,6 +1,6 @@
 #ifndef DIALOG_H
 #define DIALOG_H
-
+#include "lifegame.h"
 #include <QDialog>
 namespace Ui {
 class Dialog;
@@ -19,6 +19,9 @@ public:
 
     int get_height(){return height_input;};
     int get_width() {return width_input;};
+
+signals:
+
 
 
 private slots:

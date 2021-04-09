@@ -1,5 +1,7 @@
 #include "lifegame.h"
-
+#include <stdlib.h> // srand
+#include <time.h>
+#include <QDebug>
 //location struct
 //cell class finished in header
 //game class needs completion
@@ -25,8 +27,12 @@ Game::Game(int h, int w){
             Location l;
             l.x_ = i;
             l.y_ = j;
-
-
+            srand (time(NULL));
+            int temp = rand()%2+1;
+            qDebug() << temp;
+            bool state = bool(temp);
+            Cell *c = new Cell();
+            c->set_curr_state(state);
 
 //            Cell *c = new Cell();
 //            cells_[i][j] = c;
