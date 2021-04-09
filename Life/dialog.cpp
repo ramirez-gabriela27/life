@@ -10,11 +10,12 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
     setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
-    QValidator *validator = new QIntValidator(1, 99, this);
-
+//    Your playing field mustbe at least20 cells wide and 10 cells tall.
+    QValidator *validator_height = new QIntValidator(10, 99, this);
+    QValidator *validator_width = new QIntValidator(20, 99, this);
     // the edit lineedit will only accept integers between 100 and 999
-    ui->lineEdit->setValidator(validator);
-    ui->lineEdit_2->setValidator(validator);
+    ui->lineEdit->setValidator(validator_height);
+    ui->lineEdit_2->setValidator(validator_width);
 
 }
 
@@ -32,8 +33,7 @@ void Dialog::on_buttonBox_accepted()
     this->set_width(width);
     this->set_height(height);
 
-    qDebug() << "Width set to " << width;
-    qDebug() << "Height set to " << height;
+
     if (width == 0 || height == 0) {
         reject();
         qDebug() << "Reject";
@@ -41,8 +41,25 @@ void Dialog::on_buttonBox_accepted()
         msgBox.setText("You must fill both fields!");
         msgBox.exec();
     }
-    else
+    else if (width <= 19 || height <= 9) {
+        reject();
+        qDebug() << "Reject";
+        QMessageBox msgBox;
+        msgBox.setText("Must be proper dimensions!");
+        msgBox.exec();
+
+    }
+    else {
         accept();
+        qDebug() << "Game created !";
+        qDebug() << "Width set to " << width;
+        qDebug() << "Height set to " << height;
+        // send signal of height and width to mainwindow
+
+        // create new game object
+    }
+
+
 }
 
 void Dialog::on_buttonBox_rejected()

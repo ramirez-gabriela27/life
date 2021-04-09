@@ -55,8 +55,7 @@ void MainWindow::on_actionNew_Game_triggered()
     // if game exists, clear screen
 
 
-    qDebug() << "New game created!";
-
+//    qDebug() << "New game created!";
     // create dialogue window
 }
 
@@ -64,11 +63,9 @@ void MainWindow::on_actionChange_Color_triggered()
 {
     // default color is red
     QColor color = QColorDialog::getColor(Qt::red,this,"Cell Color");
-//    if(color.isValid()) { // if color is chosen by dialog
-//        // set color to cell color
-//        Game &g = Game::GetInstance();
-//        g.set_color(color);
-//    }
+    if(color.isValid()) { // if color is chosen by dialog
+
+    }
 }
 
 void MainWindow::on_play_button_clicked()

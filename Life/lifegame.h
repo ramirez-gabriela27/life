@@ -10,7 +10,7 @@ struct Location{
     int y_;
 };
 
-class Cell : public QObject, public QGraphicsItem{
+class Cell : public QObject{
 
     // this makes it so that we can emit signals
     Q_OBJECT
@@ -32,7 +32,14 @@ private:
     QColor color_;
     bool state_; //true for alive, false for dead
     bool next_state_; //^^
+    std::vector<Cell> neighbors_;
 };
+
+
+namespace Ui {
+class Game;
+}
+
 
 class Game : public QObject{
 
