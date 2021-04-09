@@ -21,7 +21,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::get_game_coordinates(int height, int width) {
     qDebug() << "Creating game instance! " << height<< ", " << width;
+    if (this->get_game() != nullptr) {
+        qDebug() << "Deleting old game reference...";
+        // destroy old game instance
+        delete &g_;
+        g_ = nullptr;
+    }
+
     Game *g = new Game(height, width);
+
     this->set_game(g);
 
 }

@@ -27,6 +27,10 @@ public:
     void set_color (QColor c){ color_ = c; };
     void set_curr_state(bool s){ state_ = s; };
     void set_next_state(bool s){ next_state_ = s; };
+    QRectF boundingRect();
+//    void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) override;
+
+
 private:
     Location location_;
     QColor color_;
@@ -53,7 +57,7 @@ public:
     // creates 2D vector of Cell objects. Has them displayed on mainwindow
     Game(int height, int width);
 
-    //~Game();
+//    ~Game();
 
     //getters
     int get_turns(){ return turn_count_; };
@@ -78,7 +82,7 @@ private:
     bool is_paused_;
     int height_;    //height of the grid of cells
     int widtht_;    //width of the grid of cells
-    std::vector<std::vector<Cell>> cells_;//cells,might need to be Qobject
+    std::vector<std::vector<Cell*>> cells_;//cells,might need to be Qobject
 };
 
 #endif // LIFEGAME_H

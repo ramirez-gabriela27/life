@@ -34,7 +34,7 @@ private slots:
     void get_game_coordinates(int height, int width);
 private:
     Ui::MainWindow *ui;
-    Game* g_;
+    Game* g_ = nullptr;
 
 };
 #endif // LIFEWINDOW_H
