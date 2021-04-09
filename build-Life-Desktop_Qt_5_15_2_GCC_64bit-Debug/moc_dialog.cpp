@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Dialog_t {
-    QByteArrayData data[4];
-    char stringdata0[52];
+    QByteArrayData data[7];
+    char stringdata0[82];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,13 +33,16 @@ struct qt_meta_stringdata_Dialog_t {
 static const qt_meta_stringdata_Dialog_t qt_meta_stringdata_Dialog = {
     {
 QT_MOC_LITERAL(0, 0, 6), // "Dialog"
-QT_MOC_LITERAL(1, 7, 21), // "on_buttonBox_accepted"
-QT_MOC_LITERAL(2, 29, 0), // ""
-QT_MOC_LITERAL(3, 30, 21) // "on_buttonBox_rejected"
+QT_MOC_LITERAL(1, 7, 16), // "send_coordinates"
+QT_MOC_LITERAL(2, 24, 0), // ""
+QT_MOC_LITERAL(3, 25, 6), // "height"
+QT_MOC_LITERAL(4, 32, 5), // "width"
+QT_MOC_LITERAL(5, 38, 21), // "on_buttonBox_accepted"
+QT_MOC_LITERAL(6, 60, 21) // "on_buttonBox_rejected"
 
     },
-    "Dialog\0on_buttonBox_accepted\0\0"
-    "on_buttonBox_rejected"
+    "Dialog\0send_coordinates\0\0height\0width\0"
+    "on_buttonBox_accepted\0on_buttonBox_rejected"
 };
 #undef QT_MOC_LITERAL
 
@@ -49,16 +52,22 @@ static const uint qt_meta_data_Dialog[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    2,   29,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x08 /* Private */,
-       3,    0,   25,    2, 0x08 /* Private */,
+       5,    0,   34,    2, 0x08 /* Private */,
+       6,    0,   35,    2, 0x08 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    3,    4,
 
  // slots: parameters
     QMetaType::Void,
@@ -73,12 +82,21 @@ void Dialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         auto *_t = static_cast<Dialog *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_buttonBox_accepted(); break;
-        case 1: _t->on_buttonBox_rejected(); break;
+        case 0: _t->send_coordinates((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 1: _t->on_buttonBox_accepted(); break;
+        case 2: _t->on_buttonBox_rejected(); break;
         default: ;
         }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (Dialog::*)(int , int );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Dialog::send_coordinates)) {
+                *result = 0;
+                return;
+            }
+        }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject Dialog::staticMetaObject = { {
@@ -110,15 +128,22 @@ int Dialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
+}
+
+// SIGNAL 0
+void Dialog::send_coordinates(int _t1, int _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE
