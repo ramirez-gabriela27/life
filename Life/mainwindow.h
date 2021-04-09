@@ -27,6 +27,10 @@ private slots:
 
     void on_actionChange_Color_triggered();
 
+    void on_play_button_clicked();
+
+    void on_pause_button_clicked();
+
 private:
     Ui::MainWindow *ui;
 

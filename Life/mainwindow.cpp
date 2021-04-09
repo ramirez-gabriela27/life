@@ -19,6 +19,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// Updates label text on UI
 void MainWindow::update_speed_label(int speed)
 {
     QString str = "Speed: ";
@@ -31,6 +32,7 @@ void MainWindow::on_step_button_clicked()
 {
     // next turn
     // update turn counter
+    qDebug() << "Step";
 }
 
 void MainWindow::on_speed_slider_valueChanged(int value)
@@ -57,8 +59,20 @@ void MainWindow::on_actionNew_Game_triggered()
 void MainWindow::on_actionChange_Color_triggered()
 {
     // default color is red
-    QColor color = QColorDialog::getColor(Qt::red,this,"Choose Color");
-    if(color.isValid()) {// if color is chosen by dialog
+    QColor color = QColorDialog::getColor(Qt::red,this,"Cell Color");
+    if(color.isValid()) { // if color is chosen by dialog
         // set color to cell color
+        Game &g = Game::GetInstance();
+        g.set_color(color);
     }
+}
+
+void MainWindow::on_play_button_clicked()
+{
+    qDebug() << "Playing game...";
+}
+
+void MainWindow::on_pause_button_clicked()
+{
+    qDebug() << "Game paused";
 }
