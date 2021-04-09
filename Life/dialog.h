@@ -25,6 +25,8 @@ private slots:
     // When user is done filling out text box
     void on_buttonBox_accepted();
 
+    void on_buttonBox_rejected();
+
 private:
     Ui::Dialog *ui;
     int height_input;
