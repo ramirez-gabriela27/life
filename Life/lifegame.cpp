@@ -35,10 +35,10 @@ Game::Game(int h, int w){
             int temp = rand()%2;
             qDebug() << temp;
             bool state = bool(temp);
-            Cell *c = new Cell(Qt::white, i, j);
+            Cell *c = new Cell(Qt::white, i, j); //default color to white (dead)
             c->set_curr_state(state);
-            // set dead cells to white
-            if (!state) {
+            // set live cells to gray
+            if (state) {
                 c->set_color(QColor(128, 128, 128));
             }
             rows_.push_back(c);
@@ -87,7 +87,50 @@ void Game::start_simulation(){
 }
 
 void Game::update_grid(){
-    return;
+    //check neighbors and update cell state
+    for (int i = 0; i < widtht_; i++){
+        for (int j = 0; j < height_; j++){
+            //generate neighbor count of living cells
+            int live_neighbors = 0;
+
+            //now we look at the buddies and add to the counter
+            //gotta check 8 buddies
+            if(cells_[i-1][j-1]->get_curr_state()){ live_neighbors++;}
+            if(cells_[i-1][j]->get_curr_state()){ live_neighbors++;}
+            if(cells_[i-1][j+1]->get_curr_state()){ live_neighbors++;}
+            if(cells_[i][j-1]->get_curr_state()){ live_neighbors++;}
+            if(cells_[i][j+1]->get_curr_state()){ live_neighbors++;}
+            if(cells_[i+1][j-1]->get_curr_state()){ live_neighbors++;}
+            if(cells_[i+1][j]->get_curr_state()){ live_neighbors++;}
+            if(cells_[i+1][j+1]->get_curr_state()){ live_neighbors++;}
+
+            if(!cells_[i][j]->get_curr_state()){
+                //if the cell is dead, but has 3 live neighbors, it is now alive
+                if(live_neighbors == 3){
+                    cells_[i][j]->set_curr_state(true);
+                }//otherwise, stay dead
+
+            }else{//if the cell is alive
+                if(live_neighbors < 2 || live_neighbors > 3){
+                    //and has less than 2 or more than 3 live neighbors, it dies
+                    cells_[i][j]->set_curr_state(false);
+                    //if she dead, change color to white
+                    cells_[i][j]->set_color(Qt::white);
+                }
+                //if(live_neighbors == 2 || live_neighbors == 3){
+                    //if the cell is alive, and has 2 or 3 live neighbors, it lives still
+                    //no need to test for this condition, for it will be the last and
+                    //all others are alread tested -- state won't change
+                    //cells_[i][j]->set_curr_state(true);
+                //}
+            }
+
+        }
+    }
+
+    //display it by updating the grid
+    //*****code here
+
 }
 
 void Game::update_graph(){
