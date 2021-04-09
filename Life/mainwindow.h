@@ -17,7 +17,8 @@ public:
     ~MainWindow();
 
     void update_speed_label(int speed);
-
+    void set_game(Game* g) {g_ = g;};
+    Game* get_game() {return g_;};
 private slots:
     void on_step_button_clicked();
     void on_speed_slider_valueChanged(int value);
@@ -29,9 +30,11 @@ private slots:
     void on_play_button_clicked();
 
     void on_pause_button_clicked();
-
+    // receive coordinates for game construction
+    void get_game_coordinates(int height, int width);
 private:
     Ui::MainWindow *ui;
+    Game* g_;
 
 };
 #endif // LIFEWINDOW_H

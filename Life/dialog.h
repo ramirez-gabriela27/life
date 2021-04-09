@@ -21,7 +21,7 @@ public:
     int get_width() {return width_input;};
 
 signals:
-
+    void send_coordinates(int height, int width);
 
 
 private slots:

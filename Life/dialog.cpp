@@ -55,7 +55,7 @@ void Dialog::on_buttonBox_accepted()
         qDebug() << "Width set to " << width;
         qDebug() << "Height set to " << height;
         // send signal of height and width to mainwindow
-
+        emit send_coordinates(height, width);
         // create new game object
     }
 
