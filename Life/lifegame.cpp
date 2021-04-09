@@ -10,8 +10,10 @@
 /*
     Cell constructor
 */
-Cell::Cell(){
-    color_ = QColor(128, 128, 128);
+Cell::Cell(QColor color, int x, int y){
+    color_ = color;
+    location_.x_ = x;
+    location_.y_ = y;
 }
 ///////////////
 /*
@@ -33,11 +35,10 @@ Game::Game(int h, int w){
             int temp = rand()%2;
             qDebug() << temp;
             bool state = bool(temp);
-            Cell *c = new Cell();
+            Cell *c = new Cell(Qt::white, i, j);
             c->set_curr_state(state);
             // set dead cells to white
-            if (!state)
-                c->set_color(Qt::white);
+
             rows_.push_back(c);
             // display cell object on UI
 
@@ -93,20 +94,19 @@ void Game::update_graph(){
 void Game::pause_simulation(){
     return;
 }
-QRectF Cell::boundingRect()
+QRectF Cell::boundingRect() const
 {
     return QRectF(location_.x_, location_.y_, 20, 20);
 }
 
-//void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget)
-//{
-//    Q_UNUSED(widget);
+void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget)
+{
+    Q_UNUSED(widget);
 
 
-//    QBrush b = painter->brush();
-//    // update the line for setBrush to be this
-//    painter->setBrush(QBrush(color_));
-
-//    painter->drawEllipse(QRect(this->x_, this->y_, this->width_, this->width_));
-//    painter->setBrush(b);
-//}
+    QBrush b = painter->brush();
+    // update the line for setBrush to be this
+    painter->setBrush(QBrush(color_));
+    // draw rectangle
+    painter->setBrush(b);
+}

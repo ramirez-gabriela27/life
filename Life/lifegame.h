@@ -3,20 +3,19 @@
 
 #include <QColor>
 #include <QGraphicsItem>
-#include <iostream>
-
+#include <QPainter>
+#include <QBrush>
 struct Location{
     int x_;
     int y_;
 };
 
-class Cell : public QObject{
+class Cell : public QGraphicsItem{
 
     // this makes it so that we can emit signals
-    Q_OBJECT
 
 public:
-    Cell();
+    Cell(QColor color, int x, int y);
     //getters
     Location get_location(){ return location_; };
     QColor get_color() { return color_; };
@@ -27,8 +26,8 @@ public:
     void set_color (QColor c){ color_ = c; };
     void set_curr_state(bool s){ state_ = s; };
     void set_next_state(bool s){ next_state_ = s; };
-    QRectF boundingRect();
-//    void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) override;
+    QRectF boundingRect() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) override;
 
 
 private:
@@ -40,17 +39,9 @@ private:
 };
 
 
-namespace Ui {
-class Game;
-}
-
-
-class Game : public QObject{
+class Game{
 
     // this makes it so that we can emit signals
-    Q_OBJECT
-
-
 public:
 
     // make this singleton
