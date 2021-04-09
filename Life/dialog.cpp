@@ -44,3 +44,8 @@ void Dialog::on_buttonBox_accepted()
     else
         accept();
 }
+
+void Dialog::on_buttonBox_rejected()
+{
+    reject();
+}

@@ -49,5 +49,6 @@ void MainWindow::on_actionNew_Game_triggered()
 
 
     qDebug() << "New game created!";
+
     // create dialogue window
 }
