@@ -18,6 +18,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void start_game(){
+    new Game
+}
+
+
+
 void MainWindow::update_speed_label(int speed)
 {
     QString str = "Speed: ";

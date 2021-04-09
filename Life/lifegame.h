@@ -3,18 +3,20 @@
 
 #include <QColor>
 #include <QGraphicsItem>
+#include <iostream>
 
 struct Location{
     int x_;
     int y_;
 };
 
-class Cell : public QObject, public QGraphicsItem {
+class Cell{
 
     // this makes it so that we can emit signals
     Q_OBJECT
 
 public:
+    Cell();
     //getters
     Location get_location(){ return location_; };
     QColor get_color() { return color_; };
@@ -46,6 +48,7 @@ public:
 
     //getters
     int get_turns(){ return turn_count_; };
+    bool get_status(){ return is_paused_; };
     //setters
     void set_speed(int s){ speed_ = s; };
     void pause_simulation(bool p){ is_paused_ = p; };
@@ -53,7 +56,7 @@ public:
     void take_turn();
     void start_game();
         //will call on these
-//        void create_grid();
+        void create_grid();
         void create_graph();
         void start_simulation();
     void update_grid();
@@ -63,7 +66,9 @@ private:
     int turn_count_;
     int speed_;
     bool is_paused_;
-
+    int height_;    //height of the grid of cells
+    int widtht_;    //width of the grid of cells
+    std::vector<std::vector<Cell>> cells_;//cells,might need to be Qobject
 };
 
 #endif // LIFEGAME_H
