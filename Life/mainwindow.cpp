@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include <QColorDialog>
 #include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -51,4 +52,13 @@ void MainWindow::on_actionNew_Game_triggered()
     qDebug() << "New game created!";
 
     // create dialogue window
+}
+
+void MainWindow::on_actionChange_Color_triggered()
+{
+    // default color is red
+    QColor color = QColorDialog::getColor(Qt::red,this,"Choose Color");
+    if(color.isValid()) {// if color is chosen by dialog
+        // set color to cell color
+    }
 }

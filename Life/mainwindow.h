@@ -25,6 +25,8 @@ private slots:
 
     void on_actionNew_Game_triggered();
 
+    void on_actionChange_Color_triggered();
+
 private:
     Ui::MainWindow *ui;
 
