@@ -38,7 +38,9 @@ Game::Game(int h, int w){
             Cell *c = new Cell(Qt::white, i, j);
             c->set_curr_state(state);
             // set dead cells to white
-
+            if (!state) {
+                c->set_color(QColor(128, 128, 128));
+            }
             rows_.push_back(c);
             // display cell object on UI
 
@@ -46,8 +48,8 @@ Game::Game(int h, int w){
         cells_.push_back(rows_);
     }
 
-    create_grid();
-    create_graph();
+//    create_grid();
+//    create_graph();
 }
 
 /*
@@ -69,15 +71,16 @@ void Game::start_game(){
     return;
 }
 
-void Game::create_grid(){
+//void Game::create_grid(){
 
+//    // generate grid of height h and width w
 
-    return;
-}
+//    return;
+//}
 
-void Game::create_graph(){
-    return;
-}
+//void Game::create_graph(){
+//    return;
+//}
 
 void Game::start_simulation(){
     return;

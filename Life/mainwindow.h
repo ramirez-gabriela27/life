@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "dialog.h"
+#include <QGraphicsScene>
+#include <QGraphicsView>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,7 +20,14 @@ public:
 
     void update_speed_label(int speed);
     void set_game(Game* g) {g_ = g;};
+    void set_height(int height) { height_ = height;};
+    void set_width(int width) { width_ = width;};
     Game* get_game() {return g_;};
+    int get_width() {return width_;};
+    int get_height() {return height_;};
+
+    void create_graph();
+    void create_grid();
 private slots:
     void on_step_button_clicked();
     void on_speed_slider_valueChanged(int value);
@@ -35,6 +44,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Game* g_ = nullptr;
+    QGraphicsScene *scene;
+    int width_;
+    int height_;
 
 };
 #endif // LIFEWINDOW_H

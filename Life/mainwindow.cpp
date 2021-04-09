@@ -11,6 +11,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Life Application");
     setWindowFlags(Qt::Window | Qt::MSWindowsFixedSizeDialogHint);
+    QGraphicsView * view = ui->grid_view;
+    scene = new QGraphicsScene;
+    view->setScene(scene);
+
 
 }
 
@@ -19,7 +23,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::get_game_coordinates(int height, int width) {
+void MainWindow::get_game_coordinates(int height, int width)
+{
     qDebug() << "Creating game instance! " << height<< ", " << width;
     if (this->get_game() != nullptr) {
         qDebug() << "Deleting old game reference...";
@@ -29,8 +34,12 @@ void MainWindow::get_game_coordinates(int height, int width) {
     }
 
     Game *g = new Game(height, width);
-
+    this->set_height(height);
+    this->set_width(width);
     this->set_game(g);
+
+    this->create_graph();
+    this->create_grid();
 
 }
 
@@ -76,7 +85,7 @@ void MainWindow::on_actionChange_Color_triggered()
     // default color is red
     QColor color = QColorDialog::getColor(Qt::red,this,"Cell Color");
     if(color.isValid()) { // if color is chosen by dialog
-
+        // change every live color
     }
 }
 
@@ -89,3 +98,23 @@ void MainWindow::on_pause_button_clicked()
 {
     qDebug() << "Game paused";
 }
+
+void MainWindow::create_grid(){
+
+    // generate grid of height h and width w
+    Game* g = get_game();
+    std::vector<std::vector<Cell*>> vec = g->get_game_vec();
+    int h = this->get_height();
+    int w = this->get_width();
+    for (int i = 0; i < h; i++) {
+        for (int j = 0; j < w; j++) {
+            scene->addItem(vec[i][j]);
+        }
+    }
+    return;
+}
+
+void MainWindow::create_graph(){
+    return;
+}
+
