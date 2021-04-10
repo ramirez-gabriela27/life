@@ -40,6 +40,8 @@ private slots:
     void on_play_button_clicked();
 
     void on_pause_button_clicked();
+
+//    void update_display();
     // receive coordinates for game construction
     void get_game_coordinates(int height, int width);
 private:

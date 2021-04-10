@@ -62,13 +62,16 @@ public:
     void set_status(bool p){ is_paused_ = p; };
     //member functions
     void take_turn();
-    void start_game();
+    void play_game();
         //will call on these
 //        void create_grid();
 //        void create_graph();
-        void start_simulation();
+    void start_simulation();
     void update_grid();
     void update_graph();
+signals:
+    void send_update_display();
+
 private:
     int turn_count_;
     int speed_;

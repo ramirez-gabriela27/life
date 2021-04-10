@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent)
     scene = new QGraphicsScene;
     view->setScene(scene);
 
-
 }
 
 MainWindow::~MainWindow()
@@ -34,7 +33,7 @@ void MainWindow::get_game_coordinates(int height, int width)
     }
     scene->clear();
     Game *g = new Game(height, width);
-
+//    connect(g, &Game::send_update_display,this, &MainWindow::update_display);
     this->set_height(height);
     this->set_width(width);
 
@@ -60,7 +59,7 @@ void MainWindow::update_turn_label(int count)
     QString str = "Turn: ";
     QString n = QString::number(count);
     str.append(n);
-    ui->speed_label->setText(str);
+    ui->turn_label->setText(str);
 }
 
 void MainWindow::on_step_button_clicked()
@@ -109,11 +108,7 @@ void MainWindow::on_play_button_clicked()
     qDebug() << "Playing game...";
     Game* g = get_game();
     g->set_status(false);//game is not paused
-
-    while(!g->get_status()){
-        g->take_turn();
-        this->update_turn_label(g->get_turns());
-    }
+    g->play_game();
 
 }
 
@@ -122,7 +117,7 @@ void MainWindow::on_pause_button_clicked()
     qDebug() << "Game paused";
     Game* g = get_game();
     g->set_status(true);//game is paused
-
+    // send signal to game that it is paused
 }
 
 void MainWindow::create_grid(){
