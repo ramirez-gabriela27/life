@@ -52,11 +52,23 @@ void MainWindow::update_speed_label(int speed)
     ui->speed_label->setText(str);
 }
 
+void MainWindow::update_turn_label(int count)
+{
+    QString str = "Turn: ";
+    QString n = QString::number(count);
+    str.append(n);
+    ui->speed_label->setText(str);
+}
+
 void MainWindow::on_step_button_clicked()
 {
     // next turn
     // update turn counter
     qDebug() << "Step";
+    Game*g = get_game();
+    g->take_turn();
+    qDebug() << "taking turn" << g->get_turns();
+    this->update_turn_label(g->get_turns());
 }
 
 void MainWindow::on_speed_slider_valueChanged(int value)
@@ -92,11 +104,22 @@ void MainWindow::on_actionChange_Color_triggered()
 void MainWindow::on_play_button_clicked()
 {
     qDebug() << "Playing game...";
+    Game* g = get_game();
+    g->set_status(false);//game is not paused
+
+    while(!g->get_status()){
+        g->take_turn();
+        this->update_turn_label(g->get_turns());
+    }
+
 }
 
 void MainWindow::on_pause_button_clicked()
 {
     qDebug() << "Game paused";
+    Game* g = get_game();
+    g->set_status(true);//game is paused
+
 }
 
 void MainWindow::create_grid(){

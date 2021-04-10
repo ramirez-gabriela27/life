@@ -22,6 +22,7 @@ Cell::Cell(QColor color, int x, int y){
 Game::Game(int h, int w){
     height_ = h;
     widtht_ = w;
+    turn_count_ = 0;
     srand (time(NULL));
 
     //create and populate vector of cells
@@ -39,7 +40,7 @@ Game::Game(int h, int w){
             c->set_curr_state(state);
             // set live cells to gray
             if (state) {
-                c->set_color(QColor(128, 128, 128));
+                c->set_color(QColor(128, 128, 128));              
             }
             rows_.push_back(c);
             // display cell object on UI
@@ -62,6 +63,7 @@ Game::Game(int h, int w){
 void Game::take_turn(){
     //to take the turn, we update counter
     turn_count_++;
+    qDebug() << "taking turn # " << turn_count_;
     //update the cells and the graph
     update_grid();
     update_graph();
@@ -87,6 +89,7 @@ void Game::start_simulation(){
 }
 
 void Game::update_grid(){
+    qDebug() << "in update grid function";
     //check neighbors and update cell state
     for (int i = 0; i < widtht_; i++){
         for (int j = 0; j < height_; j++){
@@ -95,19 +98,77 @@ void Game::update_grid(){
 
             //now we look at the buddies and add to the counter
             //gotta check 8 buddies
-            if(cells_[i-1][j-1]->get_curr_state()){ live_neighbors++;}
-            if(cells_[i-1][j]->get_curr_state()){ live_neighbors++;}
-            if(cells_[i-1][j+1]->get_curr_state()){ live_neighbors++;}
-            if(cells_[i][j-1]->get_curr_state()){ live_neighbors++;}
-            if(cells_[i][j+1]->get_curr_state()){ live_neighbors++;}
-            if(cells_[i+1][j-1]->get_curr_state()){ live_neighbors++;}
-            if(cells_[i+1][j]->get_curr_state()){ live_neighbors++;}
-            if(cells_[i+1][j+1]->get_curr_state()){ live_neighbors++;}
+            if(i == widtht_-1 && j == height_-1){
+                //if at the conrner (bottom right), only check inner ones
+                if(cells_[i-1][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i][j-1]->get_curr_state()){ live_neighbors++;}
+            }else if(i == 0 && j == 0){
+                //if at corner (top left)
+                if(cells_[i][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j]->get_curr_state()){ live_neighbors++;}
+            }else if(i == widtht_-1 && j == 0){
+                //if at the conrner (top right), only check inner ones
+                if(cells_[i][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j+1]->get_curr_state()){ live_neighbors++;}
+            }else if(i == 0 && j == height_-1){
+                //if at corner (bottom left)
+                if(cells_[i][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j]->get_curr_state()){ live_neighbors++;}
+            }
+
+
+            else if( i == 0){
+                //lining the edges(entire left line) except for conrner
+                if(cells_[i][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j+1]->get_curr_state()){ live_neighbors++;}
+            }else if( i == widtht_-1){
+                //lining the edges(entire right line) except for corner
+                if(cells_[i-1][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i][j-1]->get_curr_state()){ live_neighbors++;}
+
+            }else if( j == 0){
+                //lining the edges(entire top line) except for conrner
+                if(cells_[i][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j]->get_curr_state()){ live_neighbors++;}
+            }else if( j == height_-1){
+                //lining the edges(entire bottom line) except for corner
+                if(cells_[i][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j]->get_curr_state()){ live_neighbors++;}
+            }
+            //all other cells
+            else{
+                if(cells_[i-1][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i-1][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i][j+1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j-1]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j]->get_curr_state()){ live_neighbors++;}
+                if(cells_[i+1][j+1]->get_curr_state()){ live_neighbors++;}
+            }
+            qDebug() << live_neighbors << " alive around cell (" << i << " ," << j << ")";
 
             if(!cells_[i][j]->get_curr_state()){
                 //if the cell is dead, but has 3 live neighbors, it is now alive
                 if(live_neighbors == 3){
                     cells_[i][j]->set_curr_state(true);
+                    qDebug() << "she lives!";
                 }//otherwise, stay dead
 
             }else{//if the cell is alive
@@ -116,6 +177,7 @@ void Game::update_grid(){
                     cells_[i][j]->set_curr_state(false);
                     //if she dead, change color to white
                     cells_[i][j]->set_color(Qt::white);
+                    qDebug() << "she dead now";
                 }
                 //if(live_neighbors == 2 || live_neighbors == 3){
                     //if the cell is alive, and has 2 or 3 live neighbors, it lives still
@@ -137,9 +199,6 @@ void Game::update_graph(){
     return;
 }
 
-void Game::pause_simulation(){
-    return;
-}
 QRectF Cell::boundingRect() const
 {
     return QRectF(location_.x_, location_.y_, 20, 20);

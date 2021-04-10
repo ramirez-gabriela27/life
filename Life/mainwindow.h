@@ -19,6 +19,7 @@ public:
     ~MainWindow();
 
     void update_speed_label(int speed);
+    void update_turn_label(int count);
     void set_game(Game* g) {g_ = g;};
     void set_height(int height) { height_ = height;};
     void set_width(int width) { width_ = width;};
