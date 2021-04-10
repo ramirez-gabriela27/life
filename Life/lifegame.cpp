@@ -33,7 +33,7 @@ Game::Game(int h, int w){
             l.x_ = i;
             l.y_ = j;
             int temp = rand()%2;
-            qDebug() << temp;
+//            qDebug() << temp;
             bool state = bool(temp);
             Cell *c = new Cell(Qt::white, i, j); //default color to white (dead)
             c->set_curr_state(state);
@@ -152,7 +152,12 @@ void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidge
 
     QBrush b = painter->brush();
     // update the line for setBrush to be this
+    // 20x20 pixel square
+    // draws from upper left hand corner
     painter->setBrush(QBrush(color_));
+    qDebug() << "Coord:" << this->get_location().x_ << ", " << this->get_location().y_;
+    painter->drawRect(QRect(this->get_location().x_*20-376, this->get_location().y_*20-121, 20, 20));
+
     // draw rectangle
     painter->setBrush(b);
 }
