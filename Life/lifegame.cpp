@@ -69,10 +69,6 @@ void Game::take_turn(){
     update_graph();
 }
 
-void Game::start_game(){
-    return;
-}
-
 //void Game::create_grid(){
 
 //    // generate grid of height h and width w
@@ -192,7 +188,7 @@ void Game::update_grid(){
 
     //display it by updating the grid
     //*****code here
-
+//    emit send_update_display();
 }
 
 void Game::update_graph(){
@@ -215,8 +211,17 @@ void Cell::paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidge
     // draws from upper left hand corner
     painter->setBrush(QBrush(color_));
     qDebug() << "Coord:" << this->get_location().x_ << ", " << this->get_location().y_;
-    painter->drawRect(QRect(this->get_location().x_*20-376, this->get_location().y_*20-121, 20, 20));
+    painter->drawRect(QRect(this->get_location().x_*20-440, this->get_location().y_*20-215, 20, 20));
 
     // draw rectangle
     painter->setBrush(b);
+}
+
+void Game::play_game() {
+
+    while(!this->get_status()){
+        this->take_turn();
+//        this->update_turn_label(g->get_turns());
+
+    }
 }
