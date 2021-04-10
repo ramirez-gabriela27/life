@@ -56,7 +56,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(800, 600);
+        MainWindow->resize(800, 590);
         actionNew_Game = new QAction(MainWindow);
         actionNew_Game->setObjectName(QString::fromUtf8("actionNew_Game"));
         actionChange_Color = new QAction(MainWindow);
@@ -140,7 +140,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 26));
+        menubar->setGeometry(QRect(0, 0, 800, 22));
         File_button = new QMenu(menubar);
         File_button->setObjectName(QString::fromUtf8("File_button"));
         menuEdit = new QMenu(menubar);

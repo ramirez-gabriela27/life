@@ -59,7 +59,7 @@ public:
     //setters
     void set_color(QColor c);
     void set_speed(int s){ speed_ = s; };
-    void pause_simulation(bool p){ is_paused_ = p; };
+    void set_status(bool p){ is_paused_ = p; };
     //member functions
     void take_turn();
     void start_game();
@@ -69,7 +69,6 @@ public:
         void start_simulation();
     void update_grid();
     void update_graph();
-    void pause_simulation();
 private:
     int turn_count_;
     int speed_;
