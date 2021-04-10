@@ -29,8 +29,8 @@ void MainWindow::get_game_coordinates(int height, int width)
     if (this->get_game() != nullptr) {
         qDebug() << "Deleting old game reference...";
         // destroy old game instance
-        delete &g_;
-        g_ = nullptr;
+        delete g_;
+        /*g_ = nullptr*/;
     }
 
     Game *g = new Game(height, width);
@@ -106,11 +106,14 @@ void MainWindow::create_grid(){
     std::vector<std::vector<Cell*>> vec = g->get_game_vec();
     int h = this->get_height();
     int w = this->get_width();
+    int x = 0;
     for (int i = 0; i < h; i++) {
         for (int j = 0; j < w; j++) {
+            x++;
             scene->addItem(vec[i][j]);
         }
     }
+    qDebug() << "X VALUE: " << x;
     return;
 }
 

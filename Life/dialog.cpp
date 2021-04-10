@@ -41,14 +41,14 @@ void Dialog::on_buttonBox_accepted()
         msgBox.setText("You must fill both fields!");
         msgBox.exec();
     }
-    else if (width <= 19 || height <= 9) {
-        reject();
-        qDebug() << "Reject";
-        QMessageBox msgBox;
-        msgBox.setText("Must be proper dimensions!");
-        msgBox.exec();
+//    else if (width <= 19 || height <= 9) {
+//        reject();
+//        qDebug() << "Reject";
+//        QMessageBox msgBox;
+//        msgBox.setText("Must be proper dimensions!");
+//        msgBox.exec();
 
-    }
+//    }
     else {
         accept();
         qDebug() << "Game created !";
