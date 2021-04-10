@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>590</height>
+    <width>980</width>
+    <height>822</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>450</y>
+      <x>70</x>
+      <y>680</y>
       <width>781</width>
       <height>101</height>
      </rect>
@@ -86,8 +86,8 @@
    <widget class="QGraphicsView" name="graph_view">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>350</y>
+      <x>70</x>
+      <y>570</y>
       <width>781</width>
       <height>101</height>
      </rect>
@@ -98,8 +98,8 @@
      <rect>
       <x>10</x>
       <y>80</y>
-      <width>781</width>
-      <height>271</height>
+      <width>961</width>
+      <height>481</height>
      </rect>
     </property>
    </widget>
@@ -135,8 +135,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>22</height>
+     <width>980</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="File_button">

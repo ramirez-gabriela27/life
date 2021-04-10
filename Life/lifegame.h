@@ -15,7 +15,7 @@ class Cell : public QGraphicsItem{
     // this makes it so that we can emit signals
 
 public:
-    Cell(QColor color, int x, int y);
+    Cell(QColor color, const int x, const int y);
     //getters
     Location get_location(){ return location_; };
     QColor get_color() { return color_; };
@@ -35,6 +35,8 @@ private:
     QColor color_;
     bool state_; //true for alive, false for dead
     bool next_state_; //^^
+    int x_;
+    int y_;
     std::vector<Cell> neighbors_;
 };
 

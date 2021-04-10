@@ -32,13 +32,16 @@ void MainWindow::get_game_coordinates(int height, int width)
         delete g_;
         /*g_ = nullptr*/;
     }
-
+    scene->clear();
     Game *g = new Game(height, width);
+
     this->set_height(height);
     this->set_width(width);
+
     this->set_game(g);
 
     this->create_graph();
+
     this->create_grid();
 
 }
@@ -125,18 +128,19 @@ void MainWindow::on_pause_button_clicked()
 void MainWindow::create_grid(){
 
     // generate grid of height h and width w
+    // gridview set geometry
+
     Game* g = get_game();
     std::vector<std::vector<Cell*>> vec = g->get_game_vec();
     int h = this->get_height();
     int w = this->get_width();
-    int x = 0;
+
     for (int i = 0; i < h; i++) {
         for (int j = 0; j < w; j++) {
-            x++;
-            scene->addItem(vec[i][j]);
+            scene->addItem(vec[j][i]);
         }
     }
-    qDebug() << "X VALUE: " << x;
+
     return;
 }
 
