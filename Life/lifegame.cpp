@@ -66,7 +66,8 @@ void Game::take_turn(){
     qDebug() << "taking turn # " << turn_count_;
     //update the cells and the graph
     update_grid();
-    update_graph();
+//    update_graph();
+    //update();
 }
 
 //void Game::create_grid(){
@@ -80,8 +81,16 @@ void Game::take_turn(){
 //    return;
 //}
 
-void Game::start_simulation(){
-    return;
+//void Game::start_simulation(){
+//    return;
+//}
+
+void Game::set_color(QColor c){
+    for (int i = 0; i < widtht_; i++){
+        for (int j = 0; j < height_; j++){
+            cells_[i][j]->set_color(c);
+        }
+    }
 }
 
 void Game::update_grid(){

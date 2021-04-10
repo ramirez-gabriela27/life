@@ -71,6 +71,7 @@ void MainWindow::on_step_button_clicked()
     g->take_turn();
     qDebug() << "taking turn" << g->get_turns();
     this->update_turn_label(g->get_turns());
+    update();
 }
 
 void MainWindow::on_speed_slider_valueChanged(int value)
@@ -100,6 +101,16 @@ void MainWindow::on_actionChange_Color_triggered()
     QColor color = QColorDialog::getColor(Qt::red,this,"Cell Color");
     if(color.isValid()) { // if color is chosen by dialog
         // change every live color
+        Game* g = get_game();
+        std::vector<std::vector<Cell*>> vec = g->get_game_vec();
+        //check neighbors and update cell state
+        for (int i = 0; i < g->get_width(); i++){
+            for (int j = 0; j < g->get_height(); j++){
+                g->set_color(color);
+                //scene->addItem(vec[j][i]);
+                update();
+            }
+        }
     }
 }
 

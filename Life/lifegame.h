@@ -55,6 +55,8 @@ public:
     //getters
     int get_turns(){ return turn_count_; };
     bool get_status(){ return is_paused_; };
+    int get_width(){ return widtht_; };
+    int get_height(){ return height_; };
     std::vector<std::vector<Cell*>> get_game_vec() { return cells_;};
     //setters
     void set_color(QColor c);
