@@ -45,7 +45,7 @@ void Dialog::on_buttonBox_accepted()
         reject();
         qDebug() << "Reject";
         QMessageBox msgBox;
-        msgBox.setText("Height must be no more than 23. Width must be no more than 47");
+        msgBox.setText(" Width must be no more than 47, Height must be no more than 23");
         msgBox.exec();
 
     }

@@ -29,6 +29,8 @@ public:
     QRectF boundingRect() const override;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *item, QWidget *widget) override;
 
+protected:
+//    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:
     Location location_;
@@ -56,18 +58,24 @@ public:
     int get_turns(){ return turn_count_; };
     bool get_status(){ return is_paused_; };
     std::vector<std::vector<Cell*>> get_game_vec() { return cells_;};
+    int get_width() {return width_;};
+    int get_height() {return height_;};
+    int get_turn_count() {return turn_count_;};
     //setters
     void set_color(QColor c);
     void set_speed(int s){ speed_ = s; };
     void set_status(bool p){ is_paused_ = p; };
+    void set_width(int w) {width_ = w;};
+    void set_height(int h) {height_ = h;};
+    void set_turn_count(int t) {turn_count_ = t;};
     //member functions
-    void take_turn();
-    void play_game();
+//    void take_turn();
+//    void play_game();
         //will call on these
 //        void create_grid();
 //        void create_graph();
     void start_simulation();
-    void update_grid();
+//    void update_grid();
     void update_graph();
 signals:
     void send_update_display();
@@ -77,7 +85,7 @@ private:
     int speed_;
     bool is_paused_;
     int height_;    //height of the grid of cells
-    int widtht_;    //width of the grid of cells
+    int width_;    //width of the grid of cells
     std::vector<std::vector<Cell*>> cells_;//cells,might need to be Qobject
 };
 
